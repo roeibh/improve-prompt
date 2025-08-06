@@ -1,6 +1,6 @@
 {
   "name": "improve-prompt",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "CLI tool to improve AI prompts using expert prompt engineering knowledge",
   "main": "dist/index.js",
   "bin": {

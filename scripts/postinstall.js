@@ -24,11 +24,29 @@ function setupImprovePrompt() {
     }
   }
 
-  // Copy system.md if it doesn't exist
+  // Handle system.md - backup existing if changed, then copy new one
   const systemFile = path.join(configDir, "system.md");
-  if (!fs.existsSync(systemFile)) {
-    const systemTemplate = path.join(__dirname, "..", "dist", "templates", "system.md");
-    if (fs.existsSync(systemTemplate)) {
+  const systemTemplate = path.join(__dirname, "..", "dist", "templates", "system.md");
+  
+  if (fs.existsSync(systemTemplate)) {
+    if (fs.existsSync(systemFile)) {
+      // Check if the files are different
+      const existingContent = fs.readFileSync(systemFile, "utf-8");
+      const newContent = fs.readFileSync(systemTemplate, "utf-8");
+      
+      if (existingContent !== newContent) {
+        // Backup the existing file with timestamp
+        const timestamp = new Date().toISOString().replace(/[:.]/g, '-');
+        const backupFile = path.join(configDir, `system.md.${timestamp}.backup`);
+        fs.copyFileSync(systemFile, backupFile);
+        console.log(`📋 Backed up existing system.md to system.md.${timestamp}.backup`);
+        
+        // Copy the new version
+        fs.copyFileSync(systemTemplate, systemFile);
+        console.log("🆕 Updated ~/.improve-prompt/system.md with latest version");
+      }
+    } else {
+      // File doesn't exist, create it
       fs.copyFileSync(systemTemplate, systemFile);
       console.log("🎯 Created ~/.improve-prompt/system.md");
     }
