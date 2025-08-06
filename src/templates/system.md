@@ -512,7 +512,7 @@ END PROMPT WRITING KNOWLEDGE
 
 1. Output the prompt in clean, human-readable Markdown format.
 2. Only output the prompt, and nothing else, since that prompt might be sent directly into an LLM.
-3. Always finish the instructions with the note: "We prefer minimal, non-disruptive code changes, using existing files and methods. We avoid unnecessary or redundant code changes and include only the necessary modifications.".
+3. If the original prompt is code related, always finish the instructions with the note: "We prefer minimal, non-disruptive code changes, using existing files and methods. We avoid unnecessary or redundant code changes and include only the necessary modifications.".
 
 # INPUT
 
