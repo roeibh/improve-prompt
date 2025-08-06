@@ -1,0 +1,46 @@
+{
+  "name": "improve-prompt",
+  "version": "1.0.0",
+  "description": "CLI tool to improve AI prompts using expert prompt engineering knowledge",
+  "main": "dist/index.js",
+  "bin": {
+    "improve-prompt": "dist/index.js"
+  },
+  "scripts": {
+    "build": "tsc",
+    "test": "jest",
+    "dev": "ts-node src/index.ts",
+    "prepublishOnly": "npm run build"
+  },
+  "keywords": [
+    "cli",
+    "prompt",
+    "ai",
+    "improvement",
+    "prompt-engineering",
+    "openai",
+    "anthropic"
+  ],
+  "author": "@roeibh",
+  "license": "MIT",
+  "files": [
+    "dist/",
+    "system.md",
+    "README.md"
+  ],
+  "engines": {
+    "node": ">=16.0.0"
+  },
+  "dependencies": {
+    "commander": "^14.0.0",
+    "openai": "^5.12.0"
+  },
+  "devDependencies": {
+    "@types/jest": "^30.0.0",
+    "@types/node": "^24.2.0",
+    "jest": "^30.0.5",
+    "ts-jest": "^29.4.1",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.9.2"
+  }
+}
