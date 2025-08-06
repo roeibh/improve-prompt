@@ -1,28 +1,25 @@
-import * as fs from "fs";
-import { improvePrompt, loadSystemPrompt } from "./promptEngine";
+import { improvePrompt } from "./promptEngine";
+import { loadSystemPrompt } from "./config";
 
-jest.mock("fs");
-const mockFs = fs as jest.Mocked<typeof fs>;
+jest.mock("./config");
+const mockLoadSystemPrompt = loadSystemPrompt as jest.MockedFunction<typeof loadSystemPrompt>;
 
 describe("PromptEngine", () => {
   beforeEach(() => {
     jest.clearAllMocks();
   });
 
-  it("loads system prompt from file", () => {
-    mockFs.readFileSync.mockReturnValue("system prompt content");
-
-    const result = loadSystemPrompt();
-
-    expect(result).toBe("system prompt content");
-    expect(mockFs.readFileSync).toHaveBeenCalledWith(expect.stringContaining("system.md"), "utf-8");
-  });
-
   it("combines system and user prompts", () => {
-    mockFs.readFileSync.mockReturnValue("SYSTEM");
+    mockLoadSystemPrompt.mockReturnValue("SYSTEM");
 
     const result = improvePrompt("USER");
 
     expect(result).toBe("SYSTEM\n\nUSER");
+  });
+
+  it("throws error when system prompt not found", () => {
+    mockLoadSystemPrompt.mockReturnValue(null);
+
+    expect(() => improvePrompt("USER")).toThrow("System prompt not found. Please run: improve-prompt setup");
   });
 });

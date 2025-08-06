@@ -1,16 +1,17 @@
 {
   "name": "improve-prompt",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "CLI tool to improve AI prompts using expert prompt engineering knowledge",
   "main": "dist/index.js",
   "bin": {
     "improve-prompt": "dist/index.js"
   },
   "scripts": {
-    "build": "tsc",
+    "build": "tsc && cp -r src/templates dist/",
     "test": "jest",
     "dev": "ts-node src/index.ts",
-    "prepublishOnly": "npm run build"
+    "prepublishOnly": "npm run build",
+    "postinstall": "node scripts/postinstall.js"
   },
   "keywords": [
     "cli",
@@ -33,7 +34,7 @@
   },
   "files": [
     "dist/",
-    "system.md",
+    "scripts/",
     "README.md"
   ],
   "engines": {
@@ -41,6 +42,7 @@
   },
   "dependencies": {
     "commander": "^14.0.0",
+    "dotenv": "^17.2.1",
     "openai": "^5.12.0"
   },
   "devDependencies": {

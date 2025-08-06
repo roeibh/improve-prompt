@@ -46,6 +46,8 @@ async function setupConfig() {
 
     saveConfig(config);
     console.log("\n✅ Configuration saved successfully!");
+    console.log("📁 Config files created in ~/.improve-prompt/");
+    console.log("📝 You can customize the system prompt by editing ~/.improve-prompt/system.md");
   } finally {
     rl.close();
   }

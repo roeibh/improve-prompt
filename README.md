@@ -29,7 +29,24 @@ This will prompt you to enter:
 - **Base URL**: API endpoint (default: https://api.openai.com/v1)
 - **Model**: Model to use (default: gpt-4.1)
 
-The configuration is saved in `~/.improve-prompt`.
+The configuration is saved in the `~/.improve-prompt/` folder:
+- `~/.improve-prompt/.env` - Contains your API configuration
+- `~/.improve-prompt/system.md` - Contains the system prompt (customizable)
+
+#### Configuration File Format
+
+Your `.env` file will look like this:
+```bash
+# improve-prompt configuration
+# Your API key for the AI service
+API_KEY=your-api-key-here
+
+# Base URL for the API (default: https://api.openai.com/v1)
+BASE_URL=https://api.openai.com/v1
+
+# Model to use (default: gpt-4.1)
+MODEL=gpt-4o
+```
 
 ### Supported Providers
 
@@ -39,7 +56,34 @@ The tool works with any OpenAI-compatible API:
 - **OpenRouter**: Set base URL to `https://openrouter.ai/api/v1`
 - **Local models**: Set base URL to your local endpoint
 
+### Customizing the System Prompt
+
+You can customize the prompt engineering behavior by editing the system prompt:
+
+```bash
+# Edit the system prompt to customize how prompts are improved
+nano ~/.improve-prompt/system.md
+```
+
+The first time you run the tool, it will copy the default comprehensive system prompt to this location for easy customization.
+
+**Note**: If you're upgrading from an older version, the tool will automatically migrate your existing `~/.improve-prompt` file to the new folder structure.
+
 ## Usage
+
+### Quick Setup with Alias
+
+For faster access, you can create an alias in your shell:
+
+```bash
+# Add to your ~/.zshrc or ~/.bashrc
+alias improve="pbpaste | improve-prompt | pbcopy && echo '✨ Improved prompt copied to clipboard'"
+```
+
+Then simply:
+```bash
+improve  # Improves clipboard content and copies result back
+```
 
 ### Pipe content from clipboard
 
