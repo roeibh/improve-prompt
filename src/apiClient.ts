@@ -8,7 +8,7 @@ export async function callApi(prompt: string, config: Config): Promise<string> {
     });
 
   const response = await client.chat.completions.create({
-    model: config.model || "gpt-4",
+    model: config.model || "gpt-4.1",
     messages: [{ role: "user", content: prompt }],
   });
 

@@ -34,7 +34,7 @@ describe("ApiClient", () => {
       baseURL: undefined,
     });
     expect(mockCreate).toHaveBeenCalledWith({
-      model: "gpt-4",
+      model: "gpt-4.1",
       messages: [{ role: "user", content: "test prompt" }],
     });
   });
