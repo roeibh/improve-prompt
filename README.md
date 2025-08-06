@@ -29,7 +29,7 @@ This will prompt you to enter:
 - **Base URL**: API endpoint (default: https://api.openai.com/v1)
 - **Model**: Model to use (default: gpt-4.1)
 
-The configuration is saved securely in `~/.improve-prompt`.
+The configuration is saved in `~/.improve-prompt`.
 
 ### Supported Providers
 
