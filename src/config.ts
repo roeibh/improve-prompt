@@ -54,7 +54,7 @@ export function loadConfig(): Config | null {
     }
 
     // Load the .env file
-    const result = loadDotenv({ path: configFile });
+    const result = loadDotenv({ path: configFile, quiet: true });
 
     if (result.error || !result.parsed || !result.parsed.API_KEY) {
       return null;
